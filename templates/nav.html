@@ -1,0 +1,62 @@
+<style>
+    .navbar-custom {
+        background-color: transparent;
+    }
+
+    .navbar-custom .navbar-brand {
+        color: #fff; /* Set the text color to white */
+    }
+
+    .navbar-custom .nav-link {
+        color: #fff; /* Set the text color to white */
+    }
+
+    .navbar-custom .nav-link:hover {
+        color: #f8f9fa; /* Set the text color to a slightly lighter shade of white on hover */
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    {% if user.is_authenticated %}
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}"
+            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 35px;">Smart Attendance
+            System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}" style="font-size: 20px;">Admin Profile</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}" style="font-size: 20px;">Staff Profile</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}" style="font-size: 20px;">Logout</a>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}" style="font-size: 20px;">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" style="font-size: 20px;">Login</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
